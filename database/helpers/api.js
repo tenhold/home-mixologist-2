@@ -7,7 +7,10 @@ const getCocktails = (drink) => {
   */
   const options = {
     method: 'get',
-    url: 'https://the-cocktail-db.p.rapidapi.com/popular.php';
+    url: 'https://the-cocktail-db.p.rapidapi.com/popular.php',
+    headers: {
+      // 'Authorization':
+    }
   }
 };
 
