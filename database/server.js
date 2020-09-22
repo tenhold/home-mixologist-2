@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const { PORT } = process.env;
 const usersRouter = require('./routes/users');
 
-const DIST_DIR = path.join(__dirname, '../disc');
+const DIST_DIR = path.join(__dirname, '../dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 
@@ -23,6 +23,7 @@ mongoose.connect('mongodb://localhost/mixologist', {
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
 
+app.use(express.static(DIST_DIR));
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world')
