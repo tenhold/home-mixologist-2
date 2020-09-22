@@ -5,18 +5,21 @@ import axios from 'axios';
 import DrinkForm from './components/drinkForm';
 import { thisExpression, throwStatement } from '@babel/types';
 
+// import { drinks } from '../data.json';
+// const getCocktails = require('../database/helpers/api');
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
-      username: ''
+      username: '',
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
+    // this.handleSearch = this.handleSearch.bind(this);
+    this.handleUser = this.handleUser.bind(this);
   }
 
   
@@ -27,12 +30,16 @@ class App extends React.Component {
 
 
   }
+
+  // handleSearch(data) {
+  //   getCocktails(ad);
+  // }
   
-  handleSearch(username) {
+  handleUser(username) {
     // posting the server not to the database adding username to database
     axios.post(`http://localhost:8080/users/add`, { username })
     .then(data => {
-      console.log(data);
+      console.log('User Added!');
     })
     .catch(err => console.log('ERROR in handleSearch', err));
 
@@ -42,7 +49,8 @@ class App extends React.Component {
     console.log(this.state.username)
     const { username } = this.state;
 
-    this.handleSearch(username);
+    // run the handle user function
+    this.handleUser(username);
 
     this.setState({
       username: ''
@@ -60,7 +68,7 @@ class App extends React.Component {
             <button onClick={this.handleClick} type='button'>log in</button>
           </form>
         </div>
-        <DrinkForm onChange={this.handleSearh}/>
+        <DrinkForm  />
       </div>
     );
   }
