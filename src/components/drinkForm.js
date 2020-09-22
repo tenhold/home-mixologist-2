@@ -10,22 +10,23 @@ class DrinkForm extends Component {
   constructor(props) {
     super(props);
 
-
+    this.state = {
+      drinks: []
+    }
 
     this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleSearch() {
-    
-    getCocktails(drinks);
+    this.setState({
+      drinks: getCocktails(drinks)              // adding array of drinks to the state
+    });
   }
 
   render() {
-    // const { username } = cprops;
     
     return (
       <div>
-        <div value={console.log(this.props)}></div>
         <label for='drinks'>Choose you favorite liquor</label>
           <select id="liquor" name="liquor">
             <option value="whiskey">Whiskey</option>
@@ -35,7 +36,7 @@ class DrinkForm extends Component {
             <option value="gin">Gin</option>
             <option value="brandy">Brandy</option>
           </select>
-        <button onClick={this.handleSearch}>find your drink</button>
+        <button onClick={this.handleSearch} value={console.log(this.state)}>find your drink</button>
       </div>
     );
   }
