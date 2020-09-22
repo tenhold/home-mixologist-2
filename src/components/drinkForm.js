@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const DrinkForm = props => (
+const DrinkForm = ({ username }) => (
   <div>
       <label for='drinks'>Choose you favorite liquor</label>
-        <select id="liquor" name="liquor">
+        <select id="liquor" name="liquor" value={username}>
           <option value="whiskey">Whiskey</option>
           <option value="vodka">Vodka</option>
           <option value="rum">Rum</option>

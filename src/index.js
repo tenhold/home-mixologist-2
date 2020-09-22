@@ -29,10 +29,12 @@ class App extends React.Component {
   }
   
   handleSearch(username) {
-    axios.post('mongodb://localhost/mixologist/users')
-    .then(res => {
-      console.log(res);
+    // posting the server not to the database adding username to database
+    axios.post(`http://localhost:8080/users/add`, { username })
+    .then(data => {
+      console.log(data);
     })
+    .catch(err => console.log('ERROR in handleSearch', err));
 
   }
 
@@ -58,7 +60,7 @@ class App extends React.Component {
             <button onClick={this.handleClick} type='button'>log in</button>
           </form>
         </div>
-        <DrinkForm />
+        <DrinkForm onChange={this.handleSearh}/>
       </div>
     );
   }

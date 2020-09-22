@@ -5,6 +5,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const { PORT } = process.env;
 const usersRouter = require('./routes/users');
+const cors = require('cors');
 
 const DIST_DIR = path.join(__dirname, '../dist');
 const HTML_FILE = path.join(DIST_DIR, 'index.html');
@@ -12,6 +13,7 @@ const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 ////////////////////////        Database connection           ////////////////////////   
 
@@ -22,6 +24,8 @@ mongoose.connect('mongodb://localhost/mixologist', {
   .catch((err) => console.log('DATABASE ERROR: ', err))
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
+
+
 
 app.use(express.static(DIST_DIR));
 
