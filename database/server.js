@@ -1,9 +1,13 @@
 require('dotenv').config(); 
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require('path');
 const bodyParser = require('body-parser');
 const { PORT } = process.env;
 const usersRouter = require('./routes/users');
+
+const DIST_DIR = path.join(__dirname, '../disc');
+const HTML_FILE = path.join(DIST_DIR, 'index.html');
 
 
 const app = express();
@@ -18,6 +22,7 @@ mongoose.connect('mongodb://localhost/mixologist', {
   .catch((err) => console.log('DATABASE ERROR: ', err))
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
+
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world')
