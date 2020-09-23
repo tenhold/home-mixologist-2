@@ -26,7 +26,8 @@ router.route('/add').post((req, res) => {
 })
 
 router.route('/:name').delete((req, res) => {
-  const name = req.params.name.slice(1);
+  const { name } = req.params
+  console.log(name)
   
   Drink.findOneAndDelete({ name })
     .then(drink => {

@@ -84,7 +84,7 @@ class DrinkForm extends Component {
 
   deleteItem(id) {
     const { name } = id.target;
-    axios.delete(`http://localhost:8080/drinks/:${id.target.name}`)
+    axios.delete(`http://localhost:8080/drinks/${id.target.name}`)
       .then(res => {
         console.log('in front end delete', res)
       })

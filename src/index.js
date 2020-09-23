@@ -17,45 +17,56 @@ class App extends React.Component {
     super(props);
     
     this.state = {
+      users: [],
       username: '',
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleUser = this.handleUser.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
-  
+
+  componentDidUpdate() {
+    axios.get('http://localhost:8080/users')
+      .then(users => {
+        console.log('get users on load', users);
+      })
+  }
+
+  displayName() {
+
+  }
+
+
   handleChange(e) {
     this.setState({
       username: e.target.value
     });
+  
+  
   }
-
-  handleUser(username) {
+  
+  handleSearch(username) {
     // posting the server not to the database adding username to database
-    // axios.get(`http://localhost:8080/users/add`, { username })
-    //   .then((data) => {
-    //     console.log(data)
-    //   })
-
     axios.post(`http://localhost:8080/users/add`, { username })
-      .then(data => {        
-        console.log('User Added!');
-      })
-      .catch(err => console.log('ERROR in handleSearch', err));
-
+    .then(data => {
+      console.log(data);
+    })
+    .catch(err => console.log('ERROR in handleSearch', err));
+  
   }
-
+  
   handleClick() {
+    console.log(this.state.username)
     const { username } = this.state;
-
-    // run the handle user function
-    this.handleUser(username);
-
+  
+    this.handleSearch(username);
+  
     this.setState({
       username: ''
     });
+    
   }
 
 
@@ -68,9 +79,9 @@ class App extends React.Component {
         </div>
         <div style={{display: 'flex',  justifyContent:'center'}}>
           <form>
-            <input value={username} onChange={this.handleChange} placeholder='guest'></input>
-            <button onClick={this.handleUser} type='button'>log in</button>
-          </form>
+            <input value={username} onChange={this.handleChange}></input>
+            <button onClick={this.handleClick} type='button'>log in</button>
+        </form>
         </div>
         <DrinkForm user={username} />
       </div>
@@ -93,3 +104,50 @@ class App extends React.Component {
 // };
 
 ReactDOM.render(<App />, document.getElementById('app'));
+
+
+
+// handleChange(e) {
+//   this.setState({
+//     username: e.target.value
+//   });
+
+
+// }
+
+// handleSearch(username) {
+//   // posting the server not to the database adding username to database
+//   axios.post(`http://localhost:8080/users/add`, { username })
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(err => console.log('ERROR in handleSearch', err));
+
+// }
+
+// handleClick() {
+//   console.log(this.state.username)
+//   const { username } = this.state;
+
+//   this.handleSearch(username);
+
+//   this.setState({
+//     username: ''
+//   });
+  
+// }
+// render() {
+//   const { username } = this.state;
+//   return (
+//     <div>
+//       <div>Hello World</div>
+//       <div>
+//         <form>
+//           <input value={username} onChange={this.handleChange}></input>
+//           <button onClick={this.handleClick} type='button'>log in</button>
+//         </form>
+//       </div>
+//       <DrinkForm onChange={this.handleSearh}/>
+//     </div>
+//   );
+// }
