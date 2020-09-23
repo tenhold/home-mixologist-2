@@ -3,6 +3,7 @@ import { throwStatement } from '@babel/types';
 import React, { Component } from 'react';
 import axios from 'axios';
 import DrinkList from './drinkList';
+import { findOneAndUpdate } from '../../database/models/user.model';
 
 // import { drinks } from '../../data.json';
 const {getCocktails} = require('../../database/helpers/api');
@@ -24,6 +25,7 @@ class DrinkForm extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.getFavs = this.getFavs.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
+    this.changeRating = this.changeRating.bind(this);
   }
 
   componentDidMount() {
@@ -84,12 +86,20 @@ class DrinkForm extends Component {
 
   deleteItem(id) {
     const { name } = id.target;
-    axios.delete(`http://localhost:8080/drinks/${id.target.name}`)
+    axios.delete(`http://localhost:8080/drinks/${name}`)
       .then(res => {
         console.log('in front end delete', res)
       })
       .catch(err => console.log('error!!!!!', err))
+  }
 
+  changeRating(e) {
+    const { name } = e.target;
+    axios.put(`http://localhost:8080/drinks/${name}`)
+      .then(() => {
+        console.log('change rating!')
+      })
+      .catch(err => console.log('error!!!!', err));
   }
 
 
@@ -127,6 +137,11 @@ class DrinkForm extends Component {
                   </img>
                 </a>
                 <div>{fav.name}</div>
+                <div>{fav.rating}</div>
+                <button rating={fav.rating} name={fav.name} 
+                  onClick={this.changeRating}>
+                  add a rating
+                </button>
               </div>
             ))}
           </div>
