@@ -22,6 +22,8 @@ router.route('/add').post((req, res) => {
       console.log('POST ERROR: ', err);
       res.sendStatus(404);
     })
-})
+});
+
+
 
 module.exports = router;

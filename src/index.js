@@ -15,7 +15,7 @@ const getCocktails = require('../database/helpers/api');
 class App extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       users: [],
       username: '',
@@ -39,44 +39,44 @@ class App extends React.Component {
       .catch((err) => console.log('GET error in mount'))
   }
 
-    displayName() {
+  // displayName() {
 
-    }
+  // }
 
 
   handleChange(e) {
     this.setState({
       username: e.target.value
     });
-  
-  
+
+
   }
-  
+
   handleSearch(username) {
     // posting the server not to the database adding username to database
 
     axios.post(`http://localhost:8080/users/add`, { username: username.toLowerCase() })
-    .then(data => {
-      const {data: { username }} = data;
-      this.setState(prevState => ({
-        users: [...prevState.users, data], 
-        username: username
-      }))
-    })
-    .catch(err => console.log('ERROR in handleSearch', err));
-  
+      .then(data => {
+        const { data: { username } } = data;
+        this.setState(prevState => ({
+          users: [...prevState.users, data],
+          username: username
+        }))
+      })
+      .catch(err => console.log('ERROR in handleSearch', err));
+
   }
-  
+
   handleClick() {
     console.log(this.state.username)
     const { username } = this.state;
-  
+
     this.handleSearch(username);
-  
+
     this.setState({
       username: ''
     });
-    
+
   }
 
 
@@ -84,20 +84,20 @@ class App extends React.Component {
     const { username } = this.state;
     return (
       <div>
-        <div style={{display: 'flex',  justifyContent:'center'}}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           {/* <h1>Welcome {username}!</h1> */}
         </div>
-        <div style={{display: 'flex',  justifyContent:'center'}}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
           <form>
             <input value={username} onChange={this.handleChange}></input>
             <button onClick={this.handleClick} type='button'>log in</button>
-        </form>
+          </form>
         </div>
         <DrinkForm user={username} />
       </div>
     );
   }
-} 
+}
 
 
 
@@ -144,7 +144,7 @@ ReactDOM.render(<App />, document.getElementById('app'));
 //   this.setState({
 //     username: ''
 //   });
-  
+
 // }
 // render() {
 //   const { username } = this.state;
