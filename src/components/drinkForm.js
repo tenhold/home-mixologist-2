@@ -122,7 +122,7 @@ class DrinkForm extends Component {
           {/* <button >find your drink</button> */}
         </div>
         <form style={{display: 'flex',  justifyContent:'center'}}>
-            <button onClick={this.getFavs} type='button'>get your favs</button>
+            {/* <button onClick={this.getFavs} type='button'>get your favs</button> */}
         </form>
         <div class='container' style={{padding:'25px'}}>
           <div class='row'>
@@ -137,10 +137,10 @@ class DrinkForm extends Component {
                   </img>
                 </a>
                 <div>{fav.name}</div>
-                <div>{fav.rating}</div>
+                <div style={{padding: '5px'}}>{fav.rating ? fav.rating : ''}</div>
                 <button rating={fav.rating} name={fav.name} 
                   onClick={this.changeRating}>
-                  add a rating
+                  like
                 </button>
               </div>
             ))}

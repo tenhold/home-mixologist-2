@@ -38,11 +38,11 @@ router.route('/:name').delete((req, res) => {
 
 router.route('/:name').put((req, res) => {
   const { name } = req.params;
-  Drink.findOne({ name })
-    .then(drink => {
-      drink.rating = 'favorited!';
-      console.log(drink.rating, 'put request!')
-      res.status(200).send(drink);
+  Drink.findOneAndUpdate({ name }, {rating: 'favorited!'})
+    .then(() => {
+      // drink.rating = 'favorited!';
+      // console.log(drink.rating, 'put request!')
+      res.status(200).send();
     })
     .catch(() => res.sendStatus(500));
 })
