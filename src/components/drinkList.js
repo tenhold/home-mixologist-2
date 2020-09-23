@@ -1,10 +1,14 @@
 import React from 'react';
 
-const DrinkList = (prop) => (
-  <div>
-    <ul>
-      <li></li>
-    </ul>
-  </div>
+const DrinkList = (drinks) => {
+  console.log(drinks);
+  return (
+    // <ul>
+    //   {drinks.map(drink => (
+    //     <li>{drink}</li>
+    //   ))}
+    // </ul>
+  )
+};
 
-);
+export default DrinkList;

@@ -1,3 +1,4 @@
+import { throwStatement } from '@babel/types';
 // import React from 'react';
 import React, { Component } from 'react';
 
@@ -18,13 +19,13 @@ class DrinkForm extends Component {
   }
 
   handleSearch() {
-    this.setState({
-      drinks: getCocktails(drinks)              // adding array of drinks to the state
-    });
+    // this.setState({
+    //   drinks: getCocktails(drinks)              // adding array of drinks to the state
+    // });
   }
 
   render() {
-    
+    const { drinks } = this.state;
     return (
       <div>
         <label for='drinks'>Choose you favorite liquor</label>
@@ -36,7 +37,10 @@ class DrinkForm extends Component {
             <option value="gin">Gin</option>
             <option value="brandy">Brandy</option>
           </select>
-        <button onClick={this.handleSearch} value={console.log(this.state)}>find your drink</button>
+        <button onClick={this.handleSearch} >find your drink</button>
+        <ul>
+          <li>{drinks}</li>
+        </ul>
       </div>
     );
   }
