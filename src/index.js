@@ -38,12 +38,12 @@ class App extends React.Component {
     //   .then((data) => {
     //     console.log(data)
     //   })
+
     axios.post(`http://localhost:8080/users/add`, { username })
-    .then(data => {
-      
-      console.log('User Added!');
-    })
-    .catch(err => console.log('ERROR in handleSearch', err));
+      .then(data => {        
+        console.log('User Added!');
+      })
+      .catch(err => console.log('ERROR in handleSearch', err));
 
   }
 
@@ -64,13 +64,13 @@ class App extends React.Component {
     return (
       <div>
         <div style={{display: 'flex',  justifyContent:'center'}}>
-          <h1>Welcome {username}!</h1>
+          {/* <h1>Welcome {username}!</h1> */}
         </div>
         <div style={{display: 'flex',  justifyContent:'center'}}>
-          {/* <form>
+          <form>
             <input value={username} onChange={this.handleChange} placeholder='guest'></input>
             <button onClick={this.handleUser} type='button'>log in</button>
-          </form> */}
+          </form>
         </div>
         <DrinkForm user={username} />
       </div>
