@@ -33,7 +33,7 @@ class DrinkForm extends Component {
   }
 
   componentDidUpdate() {
-    this.getFavs()
+    this.getFavs();
   }
 
   getFavs() {

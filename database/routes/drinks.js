@@ -36,6 +36,17 @@ router.route('/:name').delete((req, res) => {
     .catch(() => res.sendStatus(500));
 })
 
+router.route('/:name').put((req, res) => {
+  const { name } = req.params;
+  Drink.findOne({ name })
+    .then(drink => {
+      drink.rating = 'favorited!';
+      console.log(drink.rating, 'put request!')
+      res.status(200).send(drink);
+    })
+    .catch(() => res.sendStatus(500));
+})
+
 module.exports = router;
 
 ////////////////////        mock up of return array           //////////////////////////////
