@@ -106,6 +106,7 @@ class DrinkForm extends Component {
                 width='75' height='75'>
                 </img>
               </a>
+              <div>{drink.strDrink}</div>
             </div>
           ))}
           {favorites.map((fav, i) => (
@@ -117,6 +118,7 @@ class DrinkForm extends Component {
                 width='75' height='75'>
                 </img>
               </a>
+              <div>{drink.name}</div>
             </div>
           ))}
       </div>
