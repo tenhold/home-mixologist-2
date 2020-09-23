@@ -97,7 +97,7 @@ class DrinkForm extends Component {
     const { drinks, liquor, favorites } = this.state;
     return (
       <div>
-        <div style={{display: 'flex',  justifyContent:'center'}}>
+        <div style={{display: 'flex',  justifyContent:'center', padding:'50px'}}>
           <label for='drinks'>Choose you favorite liquor</label>
             <select id="liquor" name="liquor" onChange={this.handleSearch}>
               <option value="Select">Select</option>
@@ -108,12 +108,13 @@ class DrinkForm extends Component {
               <option value="Gin">Gin</option>
               <option value="Brandy">Brandy</option>
             </select>
+
           {/* <button >find your drink</button> */}
         </div>
         <form style={{display: 'flex',  justifyContent:'center'}}>
             <button onClick={this.getFavs} type='button'>get your favs</button>
         </form>
-        <div class='container'>
+        <div class='container' style={{padding:'25px'}}>
           <div class='row'>
             {favorites.map((fav, i) => (
               <div class='col' key={i} style={{padding: '10px'}}>
@@ -129,7 +130,7 @@ class DrinkForm extends Component {
               </div>
             ))}
           </div>
-          <div class='row'>
+          <div class='row' style={{padding:'25px'}}>
             {drinks.map((drink, i) => ( 
               <div class='col' key={i} style={{padding: '10px', display: 'flex'
             }}>

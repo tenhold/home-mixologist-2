@@ -39,9 +39,9 @@ class App extends React.Component {
       .catch((err) => console.log('GET error in mount'))
   }
 
-  // displayName() {
+  displayName() {
 
-  // }
+  }
 
 
   handleChange(e) {
@@ -85,13 +85,17 @@ class App extends React.Component {
     return (
       <div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          {/* <h1>Welcome {username}!</h1> */}
+          {!username ? <h1>Sign in</h1> :
+            <h1>Welcome {username}!</h1>}
         </div>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
           <form>
             <input value={username} onChange={this.handleChange}></input>
             <button onClick={this.handleClick} type='button'>log in</button>
           </form>
+        </div>
+        <div>
+
         </div>
         <DrinkForm user={username} />
       </div>
