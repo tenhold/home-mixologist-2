@@ -15,14 +15,28 @@ class DrinkForm extends Component {
 
     this.state = {
       liquor: '',
-      drinks: []
+      drinks: [],
+      favorites: []
       
     }
 
     this.handleSearch = this.handleSearch.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.getFavs = this.getFavs.bind(this);
   }
 
+  componentDidMount() {
+    this.getFavs()
+  }
+
+  getFavs() {
+    axios.get('http://localhost:8080/drinks/')
+      .then(res => {
+        this.setState({
+          favorites: res.data
+        })
+      })
+  }
 
   handleClick(e) {
     const { user } = this.props;
@@ -60,16 +74,14 @@ class DrinkForm extends Component {
         console.log(this.state)
       })
       .catch(err => console.log('error in getCocktails ', err));
-    this.setState({
-      
-    });
   }
 
+
   render() {
-    const { drinks, liquor } = this.state;
+    const { drinks, liquor, favorites } = this.state;
     return (
       <div>
-        <div>
+        <div style={{display: 'flex',  justifyContent:'center'}}>
           <label for='drinks'>Choose you favorite liquor</label>
             <select id="liquor" name="liquor" onChange={this.handleSearch}>
               <option value="Select">Select</option>
@@ -82,12 +94,26 @@ class DrinkForm extends Component {
             </select>
           {/* <button >find your drink</button> */}
         </div>
+        <form style={{display: 'flex',  justifyContent:'center'}}>
+            <button onClick={this.getFavs} type='button'>get your favs</button>
+          </form>
           {drinks.map((drink, i) => ( 
-            <div key={i}>
-              <a href={'#'} onClick={this.handleClick} width='75' height='75'>
+            <div key={i} style={{padding: '10px', display: 'flex'}}>
+              <a href={'#'} onClick={this.handleClick}>
                 <img src={drink.strDrinkThumb} 
                 name={drink.strDrink} 
                 liquor={liquor} 
+                width='75' height='75'>
+                </img>
+              </a>
+            </div>
+          ))}
+          {favorites.map((fav, i) => (
+            <div key={i} style={{padding: '10px', display: 'flex'}}>
+              <a href={'#'}>
+                <img src={fav.image}
+                name={fav.name}
+                liquor={liquor}
                 width='75' height='75'>
                 </img>
               </a>

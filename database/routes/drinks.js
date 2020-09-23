@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Drink = require('../models/drinks.model');
+const { route } = require('./users');
 // const { drinks } = require('../../data.json');
 
 router.route('/').get((req, res) => {
@@ -23,7 +24,6 @@ router.route('/add').post((req, res) => {
       res.sendStatus(404);
     })
 })
-
 
 
 module.exports = router;
