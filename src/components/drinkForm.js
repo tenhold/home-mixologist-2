@@ -30,6 +30,10 @@ class DrinkForm extends Component {
     this.getFavs()
   }
 
+  componentDidUpdate() {
+    this.getFavs()
+  }
+
   getFavs() {
     axios.get('http://localhost:8080/drinks/')
       .then(res => {
@@ -111,20 +115,6 @@ class DrinkForm extends Component {
         </form>
         <div class='container'>
           <div class='row'>
-            {drinks.map((drink, i) => ( 
-              <div class='col' key={i} style={{padding: '10px', display: 'flex'}}>
-                <a href={'#'} onClick={this.handleClick}>
-                  <img src={drink.strDrinkThumb} 
-                  name={drink.strDrink} 
-                  liquor={liquor} 
-                  width='75' height='75'>
-                  </img>
-                </a>
-                <div>{drink.strDrink}</div>
-              </div>
-            ))}
-          </div>
-          <div class='row'>
             {favorites.map((fav, i) => (
               <div class='col' key={i} style={{padding: '10px'}}>
                 <a href={'#'}>
@@ -136,7 +126,21 @@ class DrinkForm extends Component {
                   </img>
                 </a>
                 <div>{fav.name}</div>
-                <button>delete</button>
+              </div>
+            ))}
+          </div>
+          <div class='row'>
+            {drinks.map((drink, i) => ( 
+              <div class='col' key={i} style={{padding: '10px', display: 'flex'
+            }}>
+                <a href={'#'} onClick={this.handleClick}>
+                  <img src={drink.strDrinkThumb} 
+                  name={drink.strDrink} 
+                  liquor={liquor} 
+                  width='75' height='75'>
+                  </img>
+                </a>
+                <div>{drink.strDrink}</div>
               </div>
             ))}
           </div>
