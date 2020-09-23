@@ -39,9 +39,9 @@ class App extends React.Component {
       .catch((err) => console.log('GET error in mount'))
   }
 
-  displayName() {
+    displayName() {
 
-  }
+    }
 
 
   handleChange(e) {
