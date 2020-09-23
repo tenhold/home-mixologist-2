@@ -2,7 +2,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const drinkSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   image: String,
   alcohol: String,
   userId: String

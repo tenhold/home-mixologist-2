@@ -25,6 +25,15 @@ router.route('/add').post((req, res) => {
     })
 })
 
+router.route('/:name').delete((req, res) => {
+  const name = req.params.name.slice(1);
+  
+  Drink.findOneAndDelete({ name })
+    .then(drink => {
+      drink ? res.status(200).send(drink) : res.sendStatus(404);
+    })
+    .catch(() => res.sendStatus(500));
+})
 
 module.exports = router;
 

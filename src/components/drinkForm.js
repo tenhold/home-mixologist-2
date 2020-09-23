@@ -23,6 +23,7 @@ class DrinkForm extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.getFavs = this.getFavs.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   componentDidMount() {
@@ -34,11 +35,12 @@ class DrinkForm extends Component {
       .then(res => {
         this.setState({
           favorites: res.data
-        })
-      })
+        });
+      });
   }
 
   handleClick(e) {
+    e.preventDefault();
     const { user } = this.props;
     const { name, src, liquor } = e.target
 
@@ -76,6 +78,16 @@ class DrinkForm extends Component {
       .catch(err => console.log('error in getCocktails ', err));
   }
 
+  deleteItem(id) {
+    const { name } = id.target;
+    axios.delete(`http://localhost:8080/drinks/:${id.target.name}`)
+      .then(res => {
+        console.log('in front end delete', res)
+      })
+      .catch(err => console.log('error!!!!!', err))
+
+  }
+
 
   render() {
     const { drinks, liquor, favorites } = this.state;
@@ -96,31 +108,39 @@ class DrinkForm extends Component {
         </div>
         <form style={{display: 'flex',  justifyContent:'center'}}>
             <button onClick={this.getFavs} type='button'>get your favs</button>
-          </form>
-          {drinks.map((drink, i) => ( 
-            <div key={i} style={{padding: '10px', display: 'flex'}}>
-              <a href={'#'} onClick={this.handleClick}>
-                <img src={drink.strDrinkThumb} 
-                name={drink.strDrink} 
-                liquor={liquor} 
-                width='75' height='75'>
-                </img>
-              </a>
-              <div>{drink.strDrink}</div>
-            </div>
-          ))}
-          {favorites.map((fav, i) => (
-            <div key={i} style={{padding: '10px', display: 'flex'}}>
-              <a href={'#'}>
-                <img src={fav.image}
-                name={fav.name}
-                liquor={liquor}
-                width='75' height='75'>
-                </img>
-              </a>
-              <div>{drink.name}</div>
-            </div>
-          ))}
+        </form>
+        <div class='container'>
+          <div class='row'>
+            {drinks.map((drink, i) => ( 
+              <div class='col' key={i} style={{padding: '10px', display: 'flex'}}>
+                <a href={'#'} onClick={this.handleClick}>
+                  <img src={drink.strDrinkThumb} 
+                  name={drink.strDrink} 
+                  liquor={liquor} 
+                  width='75' height='75'>
+                  </img>
+                </a>
+                <div>{drink.strDrink}</div>
+              </div>
+            ))}
+          </div>
+          <div class='row'>
+            {favorites.map((fav, i) => (
+              <div class='col' key={i} style={{padding: '10px'}}>
+                <a href={'#'}>
+                  <img src={fav.image}
+                  onClick={this.deleteItem}
+                  name={fav.name}
+                  liquor={liquor}
+                  width='75' height='75'>
+                  </img>
+                </a>
+                <div>{fav.name}</div>
+                <button>delete</button>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
