@@ -5,7 +5,7 @@ const drinkSchema = new Schema({
   name: String,
   image: String,
   alcohol: String,
-  userId: Number
+  userId: String
 });
 
 const Drink = mongoose.model('Drink', drinkSchema);

@@ -12,18 +12,16 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
-  console.log(req.body);
-  // const { username } = req.body;
-  // const newUser = new Drink({ username });
-  // console.log(newUser)
-  // newUser.save()
-  //   .then(() => {
-  //     res.status(201).send(newUser)
-  //   })
-  //   .catch(err => {
-  //     console.log('POST ERROR: ', err);
-  //     res.sendStatus(404);
-  //   })
+  const { name, image, alcohol, userId } = req.body;
+  const newDrink = new Drink({ name, image, alcohol, userId });
+  newDrink.save()
+    .then(() => {
+      res.status(201).send(newDrink)
+    })
+    .catch(err => {
+      console.log('POST DRINK ERROR: ', err);
+      res.sendStatus(404);
+    })
 })
 
 

@@ -25,16 +25,21 @@ class DrinkForm extends Component {
 
 
   handleClick(e) {
-    console.log(this.props);
+    const { user } = this.props;
     const { name, src, liquor } = e.target
+
+    // // Possible to get the userId of each user
+    // axios.get('http://localhost:8080/users/', {username: user})
+    //   .then((user) =>  console.log(user))
+
     axios.post('http://localhost:8080/drinks/add', {
       name: name,
       image: src,
       alcohol: liquor,
-      // userId: 
+      userId: user
     })
     .then(results => {
-      console.log(results);
+      console.log('added drink!');
     })
     .catch(err => console.log('error in click ', err));
   }

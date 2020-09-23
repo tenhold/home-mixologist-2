@@ -9,13 +9,15 @@ import DrinkList from './components/drinkList';
 import { drinks } from '../data.json';
 const getCocktails = require('../database/helpers/api');
 
+
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     
     this.state = {
       username: '',
-      drinks: []
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -64,7 +66,7 @@ class App extends React.Component {
     
   }
   render() {
-    const { username, drinks } = this.state;
+    const { username } = this.state;
     return (
       <div>
         <div>
@@ -72,7 +74,7 @@ class App extends React.Component {
         </div>
         <div>
           <form>
-            <input value={username} onChange={this.handleChange}></input>
+            <input value={username} onChange={this.handleChange} placeholder='guest'></input>
             <button onClick={this.filterDrinks} type='button'>log in</button>
           </form>
         </div>
