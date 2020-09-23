@@ -1,18 +1,21 @@
 const axios = require('axios');
-// const config = require('config');
+// const { DRINKS_TOKEN } = process.env;
 
-function getCocktails(drinks) {
+function getCocktails(liquor) {
   /*
   pass in the info from the api to get the drink
   */
-  // const options = {
-  //   method: 'get',
-  //   url: 'https://the-cocktail-db.p.rapidapi.com/popular.php',
-  //   headers: {
-  //     // 'Authorization':
-  //   }
-  // }
-  return drinks.map(drink => {
+  const options = {
+    method: 'get',
+    url: `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${liquor}`,
+  }
+
+  return axios(options);
+}
+
+
+function filterDrinks(drinkObj) {
+  return drinkObj.map(drink => {
     const { strDrink, strInstructions, strDrinkThumb, strIngredient1, strIngredient2 } = drink;
     return {
       name: strDrink,
@@ -23,4 +26,8 @@ function getCocktails(drinks) {
   });
 }
 
-module.exports = getCocktails;
+
+module.exports = {
+  getCocktails,
+  filterDrinks
+};

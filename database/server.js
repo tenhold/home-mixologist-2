@@ -4,8 +4,11 @@ const mongoose = require('mongoose');
 const path = require('path');
 const bodyParser = require('body-parser');
 const { PORT } = process.env;
-const usersRouter = require('./routes/users');
 const cors = require('cors');
+
+// request routes
+const usersRouter = require('./routes/users');
+const drinkRouter = require('./routes/drinks')
 
 const DIST_DIR = path.join(__dirname, '../dist');
 // const HTML_FILE = path.join(DIST_DIR, 'index.html');
@@ -26,14 +29,15 @@ mongoose.connect('mongodb://localhost/mixologist', {
 //////////////////////////////////////////////////////////////////////////////////////
 
 
-
 app.use(express.static(DIST_DIR));
+
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world')
 })
 
 app.use('/users', usersRouter);
+app.use('/drinks', drinkRouter);
 
 ////////////////////////        Server connection           ////////////////////////   
 

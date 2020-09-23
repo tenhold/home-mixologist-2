@@ -15,13 +15,13 @@ class App extends React.Component {
     
     this.state = {
       username: '',
-      drinks: getCocktails(drinks)
+      drinks: []
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.filterDrinks = this.filterDrinks.bind(this);
     this.handleUser = this.handleUser.bind(this);
+    // this.filterDrinks = this.filterDrinks.bind(this);
   }
 
   
@@ -33,9 +33,13 @@ class App extends React.Component {
 
   }
 
-  filterDrinks() {
-    
-  }
+  // filterDrinks() {
+  //   // getCocktails('Gin')
+  //   //   .then(data => {
+  //   //     console.log(data)
+  //   //   })
+  //   //   .catch(err => console.log('error in getCocktails ', err));
+  // } 
   
   handleUser(username) {
     // posting the server not to the database adding username to database
@@ -64,17 +68,15 @@ class App extends React.Component {
     return (
       <div>
         <div>
+          <h1>Welcome {username}!</h1>
+        </div>
+        <div>
           <form>
             <input value={username} onChange={this.handleChange}></input>
-            <button onClick={this.handleClick} type='button'>log in</button>
+            <button onClick={this.filterDrinks} type='button'>log in</button>
           </form>
         </div>
-        <DrinkForm  />
-        <div>
-          <ul>
-            {drinks.map((drink, i) => <li key={i}>{drink.name}</li>)}
-          </ul>
-        </div>
+        <DrinkForm user={username} />
       </div>
     );
   }

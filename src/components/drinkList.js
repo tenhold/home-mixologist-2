@@ -1,14 +1,13 @@
-import React from 'react';
+// import React from 'react';
 
-const DrinkList = (drinks) => {
-  console.log(drinks);
-  // return (
-  //   <ul>
-  //     {drinks.map(drink => (
-  //       <li>{drink}</li>
-  //     ))}
-  //   </ul>
-  // )
-};
+// const DrinkList = (drinks) => {
+//   if (drinks) {
+//     return (
+//       <ul>
+//         hello
+//       </ul>
+//     )
+//   }  
+// };
 
-export default DrinkList;
+// export default DrinkList;
