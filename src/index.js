@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowerRouter as Router, Route } from 'react-router-dom';
+import { thisExpression, throwStatement } from '@babel/types';
 import axios from 'axios';
 import DrinkForm from './components/drinkForm';
-import { thisExpression, throwStatement } from '@babel/types';
+import DrinkList from './components/drinkList';
 
-// import { drinks } from '../data.json';
-// const getCocktails = require('../database/helpers/api');
+import { drinks } from '../data.json';
+const getCocktails = require('../database/helpers/api');
 
 class App extends React.Component {
   constructor(props) {
@@ -14,11 +15,12 @@ class App extends React.Component {
     
     this.state = {
       username: '',
+      drinks: getCocktails(drinks)
     };
 
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSearch = this.handleSearch.bind(this);
+    this.filterDrinks = this.filterDrinks.bind(this);
     this.handleUser = this.handleUser.bind(this);
   }
 
@@ -31,9 +33,9 @@ class App extends React.Component {
 
   }
 
-  // handleSearch(data) {
-  //   getCocktails(ad);
-  // }
+  filterDrinks() {
+    
+  }
   
   handleUser(username) {
     // posting the server not to the database adding username to database
@@ -58,10 +60,9 @@ class App extends React.Component {
     
   }
   render() {
-    const { username } = this.state;
+    const { username, drinks } = this.state;
     return (
       <div>
-        <div>Hello World</div>
         <div>
           <form>
             <input value={username} onChange={this.handleChange}></input>
@@ -69,6 +70,11 @@ class App extends React.Component {
           </form>
         </div>
         <DrinkForm  />
+        <div>
+          <ul>
+            {drinks.map((drink, i) => <li key={i}>{drink.name}</li>)}
+          </ul>
+        </div>
       </div>
     );
   }

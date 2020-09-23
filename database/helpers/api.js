@@ -15,7 +15,7 @@ function getCocktails(drinks) {
   return drinks.map(drink => {
     const { strDrink, strInstructions, strDrinkThumb, strIngredient1, strIngredient2 } = drink;
     return {
-      drink: strDrink,
+      name: strDrink,
       liquor: [strIngredient1, strIngredient2],
       image: strDrinkThumb,
       instructions: strInstructions,
