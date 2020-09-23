@@ -14,20 +14,19 @@ function getCocktails(liquor) {
 }
 
 
-function filterDrinks(drinkObj) {
-  return drinkObj.map(drink => {
-    const { strDrink, strInstructions, strDrinkThumb, strIngredient1, strIngredient2 } = drink;
-    return {
-      name: strDrink,
-      liquor: [strIngredient1, strIngredient2],
-      image: strDrinkThumb,
-      instructions: strInstructions,
-    };
-  });
-}
+// function filterDrinks(drinkObj) {
+//   return drinkObj.map(drink => {
+//     const { strDrink, strInstructions, strDrinkThumb, strIngredient1, strIngredient2 } = drink;
+//     return {
+//       name: strDrink,
+//       liquor: [strIngredient1, strIngredient2],
+//       image: strDrinkThumb,
+//       instructions: strInstructions,
+//     };
+//   });
+// }
 
 
 module.exports = {
   getCocktails,
-  filterDrinks
 };

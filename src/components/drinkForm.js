@@ -5,7 +5,7 @@ import axios from 'axios';
 import DrinkList from './drinkList';
 
 // import { drinks } from '../../data.json';
-const {getCocktails, filterDrinks} = require('../../database/helpers/api');
+const {getCocktails} = require('../../database/helpers/api');
 
 
 
@@ -77,7 +77,7 @@ class DrinkForm extends Component {
           liquor,
           drinks
         });
-        console.log(this.state)
+        // console.log(this.state)
       })
       .catch(err => console.log('error in getCocktails ', err));
   }
@@ -149,22 +149,5 @@ class DrinkForm extends Component {
     );
   }
 }
-
-
-
-// const DrinkForm = ({ username }) => (
-//   <div>
-//       <label for='drinks'>Choose you favorite liquor</label>
-//         <select id="liquor" name="liquor" value={username}>
-//           <option value="whiskey">Whiskey</option>
-//           <option value="vodka">Vodka</option>
-//           <option value="rum">Rum</option>
-//           <option value="tequila">Tequila</option>
-//           <option value="gin">Gin</option>
-//           <option value="brandy">Brandy</option>
-//         </select>
-//       <button>find your drink</button>
-//   </div>
-// );
 
 export default DrinkForm;

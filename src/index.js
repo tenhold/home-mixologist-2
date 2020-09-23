@@ -27,11 +27,16 @@ class App extends React.Component {
   }
 
 
-  componentDidUpdate() {
+  componentDidMount() {
+    // get all the users in the database and update the state array with the users
     axios.get('http://localhost:8080/users')
-      .then(users => {
-        console.log('get users on load', users);
+      .then(res => {
+        const { data } = res;
+        this.setState({
+          users: data
+        });
       })
+      .catch((err) => console.log('GET error in mount'))
   }
 
   displayName() {
@@ -49,9 +54,14 @@ class App extends React.Component {
   
   handleSearch(username) {
     // posting the server not to the database adding username to database
-    axios.post(`http://localhost:8080/users/add`, { username })
+
+    axios.post(`http://localhost:8080/users/add`, { username: username.toLowerCase() })
     .then(data => {
-      console.log(data);
+      const {data: { username }} = data;
+      this.setState(prevState => ({
+        users: [...prevState.users, data], 
+        username: username
+      }))
     })
     .catch(err => console.log('ERROR in handleSearch', err));
   
