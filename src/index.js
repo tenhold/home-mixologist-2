@@ -73,9 +73,9 @@ class App extends React.Component {
 
     this.handleSearch(username);
 
-    this.setState({
-      username: ''
-    });
+    // this.setState({
+    //   username: ''
+    // });
 
   }
 
