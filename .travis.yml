@@ -7,7 +7,7 @@ cache:
     - node_modules
 
 before_install:
-  - npm install
+  - npm ci
 
 before_deploy:
-  - npm run build
+  - npm run lint
