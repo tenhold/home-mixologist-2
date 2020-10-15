@@ -9,5 +9,5 @@ cache:
 before_install:
   - npm ci
 
-before_deploy:
-  - npm run lint
+script: 
+  - npm test
